@@ -12,13 +12,15 @@ words = [
 ]
 
 word = random.choice(words)
-guessed = []
-attempts = 6
+guessed = [] 
+attempts = 6 
 
 print("¡Bienvenido al Ahorcado!")
 print()
 
+
 while attempts > 0:
+   
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
     progress = ""
     for letter in word:
@@ -37,6 +39,11 @@ while attempts > 0:
     print(f"Letras usadas: {', '.join(guessed)}")
     
     letter = input("Ingresá una letra: ")
+    
+    # Si no es de longitud 1 o no es letra, continuar el juego en la siguiente iteración
+    if len(letter) != 1 or not letter.isalpha():
+        print("Entrada no válida")
+        continue
 
     if letter in guessed:
         print("Ya usaste esa letra.")
@@ -47,8 +54,9 @@ while attempts > 0:
         guessed.append(letter)
         attempts -= 1
         print("Esa letra no está en la palabra.")
-
+    
     print()
+    
 
 else:
     print(f"¡Perdiste! La palabra era: {word}")
