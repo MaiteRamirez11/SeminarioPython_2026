@@ -1,27 +1,47 @@
 import random
 
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
-]
+# Diccionario de categorías
+categories = {
+    "programacion":[ "python", "programa", "variable", "funcion", "bucle", "cadena", "entero", "lista"],
+    "bandas": ["beatles", "oasis", "queen", "sumo", "babasonicos", "virus"],
+    "animales": ["perro", "gato", "tigre", "elefante", "leon"],
+    "colores": ["rojo", "azul", "amarillo", "violeta", "rosa", "verde"]
+}
 
-word = random.choice(words)
-guessed = [] 
-attempts = 6 
-score = 0
 
 print("¡Bienvenido al Ahorcado!")
 print()
 
 
-while attempts > 0:
-   
+# Mostrar categorías
+print("Categorías:")
+for category in categories.keys():
+    print(f"{category}", end=" | ")
+
+
+# Elegir categoría
+while True:
+    choice = input("Elegí una categoría: ").lower()
+    if choice in categories:
+        break
+    else:
+        print("Categoría inválida. Intentá de nuevo.")
+
+
+# Se guarda la lista de palabras que corresponde a la categoría elegida
+words = categories[choice]
+
+# Se elige una palabra al azar de la lista
+word = random.choice(words)
+
+guessed = [] 
+attempts = 6 
+score = 0
+
+print(f"Categoría elegida: {choice}")
+print("*" * 40)
+
+while attempts > 0: 
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
     progress = ""
     for letter in word:
